@@ -1,3 +1,4 @@
+import os; os.environ['FLASK_ENV'] = 'development'  # Enable debug mode for development
 from flask import Flask, render_template, request, redirect, url_for, session  # type: ignore[import]
 
 
