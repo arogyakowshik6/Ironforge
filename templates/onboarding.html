@@ -1,40 +1,14 @@
-{% extends 'base.html' %}
-{% block content %}
-<style>
-.ob-wrap{max-width:680px;margin:3rem auto;padding:0 1.5rem 4rem}
-.ob-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:2px;margin-bottom:.3rem}
-.ob-sub{color:var(--muted);font-size:.9rem;margin-bottom:2.5rem}
-.progress-bar{height:3px;background:var(--border);border-radius:2px;margin-bottom:2.5rem;overflow:hidden}
-.progress-fill{height:100%;background:var(--red);border-radius:2px;transition:width .4s ease;width:0%}
-.step{display:none}.step.active{display:block}
-.step-label{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.5rem}
-.step-q{font-size:1.4rem;font-weight:600;margin-bottom:.3rem}
-.step-hint{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem}
-.opt-grid{display:grid;gap:.75rem}
-.opt-grid.cols2{grid-template-columns:1fr 1fr}
-.opt-grid.cols3{grid-template-columns:repeat(3,1fr)}
-.opt-btn{padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;font-size:.9rem;font-family:'Inter',sans-serif}
-.opt-btn:hover{border-color:#555;background:#1c1c1c}
-.opt-btn.selected{border-color:var(--red);background:rgba(230,57,70,.08);color:#fff}
-.opt-btn .opt-title{font-weight:600;margin-bottom:.2rem}
-.opt-btn .opt-sub{font-size:.75rem;color:var(--muted)}
-input[type=number],input[type=text]{width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:1rem 1.2rem;font-size:1rem;font-family:'Inter',sans-serif;outline:none;transition:border .2s}
-input:focus{border-color:var(--red)}
-.unit-row{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center}
-.unit-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.unit-btn{padding:.6rem 1rem;font-size:.8rem;cursor:pointer;border:none;background:transparent;color:var(--muted);font-family:'Inter',sans-serif}
-.unit-btn.active{background:var(--red);color:#fff}
-.nav-btns{display:flex;gap:1rem;margin-top:2rem}
-.btn-back{background:transparent;border:1px solid var(--border);color:var(--muted)}
-.btn-back:hover{border-color:#555;color:var(--text)}
-.submit-btn{width:100%;justify-content:center;padding:1rem;font-size:1rem}
-.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem}
-.sum-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem}
-.sum-key{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
-.sum-val{font-weight:600}
-</style>
-
-<div class="ob-wrap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='./style/onboarding.css') }}">
+  <title>IronForge || Onboarding</title>
+</head>
+<body>
+  <!-- cards -->
+  <div class="ob-wrap">
   <div class="ob-title">Build Your Plan</div>
   <div class="ob-sub">Answer 12 quick questions to generate your personalised programme.</div>
   <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
@@ -201,65 +175,11 @@ input:focus{border-color:var(--red)}
     </div>
 
     <div class="nav-btns" id="nav-btns">
-      <button type="button" class="btn btn-outline btn-back" id="back-btn" onclick="prevStep()" style="display:none">← Back</button>
+      <button type="button" class="btn btn-outline btn-back" id="back-btn" onclick="prevStep()">← Back</button>
       <button type="button" class="btn btn-red" id="next-btn" onclick="nextStep()">Continue →</button>
     </div>
   </form>
 </div>
-
-<script>
-let current = 1;
-const total = 13;
-const answers = {};
-
-function showStep(n){
-  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-  document.querySelector(`[data-step="${n}"]`).classList.add('active');
-  document.getElementById('prog').style.width = ((n-1)/(total-1)*100)+'%';
-  document.getElementById('back-btn').style.display = n>1?'':'none';
-  document.getElementById('next-btn').style.display = n===total?'none':'';
-  if(n===total) buildSummary();
-}
-
-function nextStep(){
-  if(!validateStep()) return;
-  current++;
-  showStep(current);
-}
-function prevStep(){ if(current>1){ current--; showStep(current); } }
-
-function validateStep(){
-  const step = document.querySelector(`[data-step="${current}"]`);
-  const inp = step.querySelector('input[type=number], input[type=text]');
-  if(inp && !inp.value){ inp.focus(); inp.style.borderColor='var(--red)'; setTimeout(()=>inp.style.borderColor='',1500); return false; }
-  const hidden = step.querySelector('input[type=hidden]');
-  if(hidden && !hidden.value){ step.querySelectorAll('.opt-btn')[0].style.animation='shake .3s'; return false; }
-  return true;
-}
-
-document.querySelectorAll('.opt-btn').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    const field = this.dataset.field;
-    document.querySelectorAll(`[data-field="${field}"]`).forEach(b=>b.classList.remove('selected'));
-    this.classList.add('selected');
-    document.getElementById(field).value = this.dataset.val;
-    answers[field] = this.dataset.val;
-    setTimeout(nextStep, 200);
-  });
-});
-
-function setUnit(field, unit, el){
-  el.parentElement.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-}
-
-const labels = {name:'Name',age:'Age',gender:'Gender',height:'Height',weight:'Weight',target_weight:'Target Weight',body_type:'Body Type',experience:'Experience',goal:'Goal',days:'Days/Week',equipment:'Equipment',health:'Health'};
-function buildSummary(){
-  const form = document.getElementById('ob-form');
-  const fd = new FormData(form);
-  let html='';
-  for(const [k,v] of fd.entries()) if(v) html+=`<div class="sum-item"><div class="sum-key">${labels[k]||k}</div><div class="sum-val">${v.replace(/_/g,' ')}</div></div>`;
-  document.getElementById('summary-grid').innerHTML=html;
-}
-</script>
-{% endblock %}
+<script type="module" src="{{ url_for('static', filename='scripts/onboarding.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+.plan-wrap{max-width:960px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.plan-hero{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2.5rem;margin-bottom:2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.plan-hero-left h1{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;margin-top:.75rem;margin-bottom:.4rem}
+.plan-hero-left .goal-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.3);color:var(--red);font-size:.78rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+.plan-hero-left p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-top:.75rem;max-width:480px}
+.hero-tags{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+.tdee-box{background:var(--dark);border:1px solid var(--border);border-radius:10px;padding:1.5rem 2rem;text-align:center;min-width:160px}
+.tdee-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--red);line-height:1}
+.tdee-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:.3rem}
+
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.macros-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+.macro-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center}
+.macro-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--text)}
+.macro-val span{font-size:1rem;color:var(--muted)}
+.macro-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.macro-note{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+.macro-rule{background:rgba(244,162,97,.07);border:1px solid rgba(244,162,97,.2);border-radius:8px;padding:1rem 1.25rem;font-size:.83rem;color:var(--gold);line-height:1.6;margin-bottom:2.5rem}
+
+/* Weekly Calendar */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:2.5rem}
+.day-pill{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.75rem .5rem;text-align:center;cursor:pointer;transition:all .2s}
+.day-pill:hover{border-color:#555}
+.day-pill.active{border-color:var(--red);background:rgba(230,57,70,.1)}
+.day-pill.rest-day{border-color:var(--border);opacity:.6}
+.day-pill.double-day{border-top:2px solid var(--gold)}
+.day-name{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:.3rem}
+.day-icon{font-size:1.2rem}
+.day-type-label{font-size:.58rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase}
+
+/* Exercise accordion */
+.day-detail{display:none;margin-bottom:1.5rem}
+.day-detail.open{display:block}
+.day-header{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.day-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px}
+.day-header .badge{font-size:.72rem;color:var(--muted);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px}
+.ex-list{display:grid;gap:.75rem}
+.ex-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:start}
+.ex-name{font-weight:600;font-size:.95rem;margin-bottom:.25rem}
+.ex-tip{font-size:.78rem;color:var(--muted);line-height:1.5}
+.ex-meta{text-align:right}
+.ex-sets{font-size:.82rem;font-weight:600;color:var(--text);white-space:nowrap}
+.ex-rest{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.rest-card{background:rgba(244,162,97,.05);border:1px solid rgba(244,162,97,.15);border-radius:10px;padding:1.5rem;color:var(--gold);font-size:.9rem;line-height:1.7}
+
+/* Diet */
+.meal-list{display:grid;gap:.75rem;margin-bottom:2.5rem}
+.meal-row{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start}
+.meal-time{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--red);font-weight:600;padding-top:.15rem}
+.meal-name{font-weight:600;font-size:.92rem;margin-bottom:.2rem}
+.meal-detail{font-size:.78rem;color:var(--muted);line-height:1.5}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+  .avoid-list,.snack-list{display:grid;gap:.5rem}
+  .avoid-list > *,.snack-list > *{font-size:.83rem;color:var(--muted);padding:.5rem .75rem;background:var(--card);border:1px solid var(--border);border-radius:6px}
+  .avoid-list > *::before{content:'✕ ';color:var(--red)}
+  .snack-list > *::before{content:'✓ ';color:#52b788}
+.col-title{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:.75rem}
+
+.tag-badge{font-size:.78rem;color:var(--muted);background:var(--dark);border:1px solid var(--border);padding:.3rem .8rem;border-radius:20px}
+
+.supps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-bottom:2rem}
+.supp-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;font-size:.82rem}
+
+.safety-note{background:rgba(244,162,97,.06);border:1px solid rgba(244,162,97,.2);border-radius:8px;padding:1.25rem 1.5rem}
+.safety-note ul{list-style:none;display:grid;gap:.5rem}
+.safety-note li{font-size:.83rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.5}
+.safety-note li::before{content:'•';position:absolute;left:0;color:var(--gold)}
+.rebuild-btn-wrap{text-align:center;margin-top:3rem}
+.footer-link-wrap{text-align:center;margin-top:3rem}

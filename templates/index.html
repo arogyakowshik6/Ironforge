@@ -3,44 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    .btn-red {
-      font-size: 1rem;
-      padding: 0.9rem 2.5rem;
-    }
-    .safety strong { color: var(--text); }
-  </style>
+  <link rel="stylesheet" href="./style/index.css">
+  <title>IronForge || Home</title>
 </head>
 <body>
-  
+  {% block content %}
+  {% endblock %}
 
-  <link rel="stylesheet" href="styles.css">
+  <section class="hero">
+    <p class="hero-eyebrow">Personalised Fitness & Diet Plan System</p>
+    <h1 class="hero-title">IRON<span>FORGE</span><br>CROSSFIT</h1>
+    <p class="hero-sub">Answer 12 questions. Get a fully personalised workout programme and nutrition plan tailored to your body, goal and schedule.</p>
+    <a href="/onboarding" class="btn btn-red">Build My Plan →</a>
+  </section>
 
-<section class="hero">
-  <p class="hero-eyebrow">Personalised Fitness & Diet Plan System</p>
-  <h1 class="hero-title">IRON<span>FORGE</span><br>CROSSFIT</h1>
-  <p class="hero-sub">Answer 12 questions. Get a fully personalised workout programme and nutrition plan tailored to your body, goal and schedule.</p>
-  <a href="/onboarding" class="btn btn-red">Build My Plan →</a>
-</section>
+  <div class="stats">
+    <div><div class="stat-num">4</div><div class="stat-label">Programmes</div></div>
+    <div><div class="stat-num">28</div><div class="stat-label">Training Days</div></div>
+    <div><div class="stat-num">100+</div><div class="stat-label">Exercises</div></div>
+  </div>
 
-<div class="stats">
-  <div><div class="stat-num">4</div><div class="stat-label">Programmes</div></div>
-  <div><div class="stat-num">28</div><div class="stat-label">Training Days</div></div>
-  <div><div class="stat-num">100+</div><div class="stat-label">Exercises</div></div>
-</div>
+  <div class="goals">
+    <div class="goal-card"><div class="goal-icon">🔥</div><div class="goal-name">Weight Loss</div><div class="goal-desc">Cardio circuits and metabolic conditioning with a 400–600 kcal deficit.</div></div>
+    <div class="goal-card"><div class="goal-icon">💪</div><div class="goal-name">Bulking</div><div class="goal-desc">Heavy compound lifts with a calorie surplus to maximise muscle growth.</div></div>
+    <div class="goal-card"><div class="goal-icon">✂️</div><div class="goal-name">Cutting</div><div class="goal-desc">Retain muscle during a moderate deficit with high protein and strength work.</div></div>
+    <div class="goal-card"><div class="goal-icon">⚡</div><div class="goal-name">Shredding</div><div class="goal-desc">Competition-level leanness via twice-daily sessions and carb cycling.</div></div>
+  </div>
 
-<div class="goals">
-  <div class="goal-card"><div class="goal-icon">🔥</div><div class="goal-name">Weight Loss</div><div class="goal-desc">Cardio circuits and metabolic conditioning with a 400–600 kcal deficit.</div></div>
-  <div class="goal-card"><div class="goal-icon">💪</div><div class="goal-name">Bulking</div><div class="goal-desc">Heavy compound lifts with a calorie surplus to maximise muscle growth.</div></div>
-  <div class="goal-card"><div class="goal-icon">✂️</div><div class="goal-name">Cutting</div><div class="goal-desc">Retain muscle during a moderate deficit with high protein and strength work.</div></div>
-  <div class="goal-card"><div class="goal-icon">⚡</div><div class="goal-name">Shredding</div><div class="goal-desc">Competition-level leanness via twice-daily sessions and carb cycling.</div></div>
-</div>
-
-<div class="section">
-  <div class="safety">⚠️ <strong>Health & Safety:</strong> Always consult a GP or healthcare professional before starting a new fitness or diet programme. These plans are general guidelines — adjust based on how your body responds over 4 weeks. If you feel pain, dizziness or illness, stop immediately.</div>
-</div>
-{% endblock %}
-
+  <div class="section">
+    <div class="safety">⚠️ <strong>Health & Safety:</strong> Always consult a GP or healthcare professional before starting a new fitness or diet programme. These plans are general guidelines — adjust based on how your body responds over 4 weeks. If you feel pain, dizziness or illness, stop immediately.</div>
+  </div>
 </body>
 </html>

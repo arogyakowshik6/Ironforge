@@ -1,0 +1,12 @@
+:root {
+    --text: red;
+}
+
+.btn-red {
+      font-size: 1rem;
+      padding: 0.9rem 2.5rem;
+}
+
+.safety strong { 
+    color: var(--text); 
+}
