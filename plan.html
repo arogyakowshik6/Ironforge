@@ -1,0 +1,223 @@
+
+<style>
+.plan-wrap{max-width:960px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.plan-hero{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2.5rem;margin-bottom:2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.plan-hero-left h1{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;margin-top:.75rem;margin-bottom:.4rem}
+.plan-hero-left .goal-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.3);color:var(--red);font-size:.78rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+.plan-hero-left p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-top:.75rem;max-width:480px}
+.hero-tags{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+.tdee-box{background:var(--dark);border:1px solid var(--border);border-radius:10px;padding:1.5rem 2rem;text-align:center;min-width:160px}
+.tdee-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--red);line-height:1}
+.tdee-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:.3rem}
+
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.macros-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+.macro-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center}
+.macro-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--text)}
+.macro-val span{font-size:1rem;color:var(--muted)}
+.macro-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.macro-note{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+.macro-rule{background:rgba(244,162,97,.07);border:1px solid rgba(244,162,97,.2);border-radius:8px;padding:1rem 1.25rem;font-size:.83rem;color:var(--gold);line-height:1.6;margin-bottom:2.5rem}
+
+/* Weekly Calendar */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:2.5rem}
+.day-pill{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.75rem .5rem;text-align:center;cursor:pointer;transition:all .2s}
+.day-pill:hover{border-color:#555}
+.day-pill.active{border-color:var(--red);background:rgba(230,57,70,.1)}
+.day-pill.rest-day{border-color:var(--border);opacity:.6}
+.day-pill.double-day{border-top:2px solid var(--gold)}
+.day-name{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:.3rem}
+.day-icon{font-size:1.2rem}
+.day-type-label{font-size:.58rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase}
+
+/* Exercise accordion */
+.day-detail{display:none;margin-bottom:1.5rem}
+.day-detail.open{display:block}
+.day-header{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.day-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px}
+.day-header .badge{font-size:.72rem;color:var(--muted);border:1px solid var(--border);padding:.2rem .6rem;border-radius:20px}
+.ex-list{display:grid;gap:.75rem}
+.ex-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:start}
+.ex-name{font-weight:600;font-size:.95rem;margin-bottom:.25rem}
+.ex-tip{font-size:.78rem;color:var(--muted);line-height:1.5}
+.ex-meta{text-align:right}
+.ex-sets{font-size:.82rem;font-weight:600;color:var(--text);white-space:nowrap}
+.ex-rest{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.rest-card{background:rgba(244,162,97,.05);border:1px solid rgba(244,162,97,.15);border-radius:10px;padding:1.5rem;color:var(--gold);font-size:.9rem;line-height:1.7}
+
+/* Diet */
+.meal-list{display:grid;gap:.75rem;margin-bottom:2.5rem}
+.meal-row{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start}
+.meal-time{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--red);font-weight:600;padding-top:.15rem}
+.meal-name{font-weight:600;font-size:.92rem;margin-bottom:.2rem}
+.meal-detail{font-size:.78rem;color:var(--muted);line-height:1.5}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+  .avoid-list,.snack-list{display:grid;gap:.5rem}
+  .avoid-list > *,.snack-list > *{font-size:.83rem;color:var(--muted);padding:.5rem .75rem;background:var(--card);border:1px solid var(--border);border-radius:6px}
+  .avoid-list > *::before{content:'✕ ';color:var(--red)}
+  .snack-list > *::before{content:'✓ ';color:#52b788}
+.col-title{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:.75rem}
+
+.tag-badge{font-size:.78rem;color:var(--muted);background:var(--dark);border:1px solid var(--border);padding:.3rem .8rem;border-radius:20px}
+
+.supps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-bottom:2rem}
+.supp-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;font-size:.82rem}
+
+.safety-note{background:rgba(244,162,97,.06);border:1px solid rgba(244,162,97,.2);border-radius:8px;padding:1.25rem 1.5rem}
+.safety-note ul{list-style:none;display:grid;gap:.5rem}
+.safety-note li{font-size:.83rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.5}
+.safety-note li::before{content:'•';position:absolute;left:0;color:var(--gold)}
+.rebuild-btn-wrap{text-align:center;margin-top:3rem}
+.footer-link-wrap{text-align:center;margin-top:3rem}
+</style>
+
+<div class="plan-wrap">
+  <!-- Hero -->
+  <div class="plan-hero">
+    <div class="plan-hero-left">
+      <div class="goal-badge">{{plan.icon}} {{plan.name}}</div>
+      <h1>Hey, {{ user.name or 'Athlete' }}.</h1>
+      <p>{{plan.description}}</p>
+      <div class="hero-tags">
+        <span class="tag-badge">🏋️ {{plan.style}}</span>
+        <span class="tag-badge">🥗 {{plan.diet_type}}</span>
+        <span class="tag-badge">📅 {{user.days or 4}} days/week</span>
+      </div>
+    </div>
+    <div class="tdee-box">
+      <div class="tdee-num">{{tdee}}</div>
+      <div class="tdee-label">Est. TDEE<br>kcal/day</div>
+    </div>
+  </div>
+
+  <!-- Macros -->
+  <div class="section-title">Calorie & Macro Targets</div>
+  <div class="macros-row">
+    <div class="macro-card">
+      <div class="macro-val">{{macros.kcal}}<span>kcal</span></div>
+      <div class="macro-label">Daily Calories</div>
+      <div class="macro-note">{{macros.weight}}</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-val">{{macros.protein}}<span>g</span></div>
+      <div class="macro-label">Protein</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-val">{{macros.carbs}}<span>g</span></div>
+      <div class="macro-label">Carbohydrates</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-val">{{macros.fats}}<span>g</span></div>
+      <div class="macro-label">Fats</div>
+    </div>
+  </div>
+  <div class="macro-rule">💡 {{plan.macro_rule}}</div>
+
+  <!-- Weekly Plan -->
+  <div class="section-title">7-Day Training Schedule</div>
+  <div class="week-grid">
+    {% for d in plan.days %}
+    <div class="day-pill {% if d.type=='rest' %}rest-day{% elif d.type=='double' %}double-day{% endif %}"
+         data-day-index="{{ loop.index0 }}">
+      <div class="day-name">{{d.day[:3]}}</div>
+      <div class="day-icon">{% if d.type=='rest' %}😴{% elif d.type=='double' %}⚡{% else %}💪{% endif %}</div>
+      <div class="day-type-label">{% if d.type=='rest' %}Rest{% elif d.type=='double' %}2x{% else %}Train{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% for d in plan.days %}
+  <div class="day-detail" id="day-{{loop.index0}}">
+    <div class="day-header">
+      <h3>{{d.day}} — {{d.label}}</h3>
+      <span class="badge">{{d.exercises|length}} exercises</span>
+    </div>
+    {% if d.type == 'rest' %}
+    <div class="rest-card">🌿 <strong>Recovery Day</strong><br>{{ d.note }}</div>
+    {% else %}
+    <div class="ex-list">
+      {% for ex in d.exercises %}
+      <div class="ex-card">
+        <div>
+          <div class="ex-name">{{ex.name}}</div>
+          <div class="ex-tip">{{ex.tip}}</div>
+        </div>
+        <div class="ex-meta">
+          <div class="ex-sets">{{ex.sets}}</div>
+          {% if ex.rest %}<div class="ex-rest">{{ex.rest}}</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+
+  <!-- Diet -->
+  <div class="section-title">Nutrition Plan</div>
+  <div class="meal-list">
+    {% for m in plan.meals %}
+    <div class="meal-row">
+      <div class="meal-time">{{m.time}}</div>
+      <div>
+        <div class="meal-name">{{m.meal}}</div>
+        <div class="meal-detail">{{m.detail}}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="col-title">❌ Foods to Avoid</div>
+      <div class="avoid-list" role="list">{% for f in plan.avoid %}<div role="listitem">{{f}}</div>{% endfor %}</div>
+    </div>
+    <div>
+      <div class="col-title">✅ Healthy Snack Options</div>
+      <div class="snack-list" role="list">{% for s in plan.snacks %}<div role="listitem">{{s}}</div>{% endfor %}</div>
+    </div>
+  </div>
+
+  {% if plan.get('supplements') %}
+  <div class="section-title">Recommended Supplements</div>
+  <div class="supps">
+    {% for s in plan.supplements %}
+    <div class="supp-card">💊 {{s}}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Safety -->
+  <div class="section-title">Health & Safety</div>
+  <div class="safety-note">
+    <ul>
+      <li>Always consult a GP or healthcare professional before starting a new fitness or diet programme.</li>
+      <li>These plans are general guidelines. Adjust based on how your body responds over 4 weeks.</li>
+      <li>If you feel pain (not muscle soreness), dizziness or illness, stop immediately and seek medical advice.</li>
+      <li>Beginners should start with lighter weights and master form before increasing load.</li>
+      <li>Sleep 7–9 hours per night. Sleep is as important as training and diet for achieving results.</li>
+      <li>Drink a minimum of 2.5–4 litres of water per day depending on sweat rate and your goal.</li>
+      <li>Progress is not always linear. Track trends over 4 weeks, not day to day.</li>
+    </ul>
+  </div>
+
+  <div class="rebuild-btn-wrap">
+    <a href="/onboarding" class="btn btn-outline">← Rebuild Plan</a>
+  </div>
+</div>
+
+<script>
+function toggleDay(i){
+  const el=document.getElementById('day-'+i);
+  const pills=document.querySelectorAll('.day-pill');
+  const wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.day-detail').forEach(d=>d.classList.remove('open'));
+  document.querySelectorAll('.day-pill').forEach(p=>p.classList.remove('active'));
+  if(!wasOpen){el.classList.add('open');pills[i].classList.add('active');el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+}
+// Open Monday by default
+toggleDay(0);
+</script>
+
