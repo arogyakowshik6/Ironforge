@@ -17,6 +17,9 @@ function nextStep(){
   current++;
   showStep(current);
 }
+
+document.getElementById('next-btn').addEventListener('click', nextStep)
+
 function prevStep(){ if(current>1){ current--; showStep(current); } }
 
 function validateStep(){

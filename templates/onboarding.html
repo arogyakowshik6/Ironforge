@@ -1,184 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url_for('static', filename='./style/onboarding.css') }}">
-  <title>IronForge || Onboarding</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./style/onboarding.css') }}">
+    <title>IronForge || Onboarding</title>
 </head>
 <body>
-  <!-- cards -->
-  <div class="ob-wrap">
-  <div class="ob-title">Build Your Plan</div>
-  <div class="ob-sub">Answer 12 quick questions to generate your personalised programme.</div>
-  <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
-
-  <form id="ob-form" method="POST" action="/onboarding">
-
-    <!-- Step 1: Name -->
-    <div class="step active" data-step="1">
-      <div class="step-label">Step 1 of 12</div>
-      <div class="step-q">What should we call you?</div>
-      <div class="step-hint">Used for your personalised plan greeting.</div>
-      <input type="text" name="name" id="name" placeholder="Your name or nickname" required>
+<!-- cards -->
+<div class="ob-wrap">
+    <div class="ob-title">Build Your Plan</div>
+    <div class="ob-sub">Answer 12 quick questions to generate your personalised programme.</div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="prog"></div>
     </div>
 
-    <!-- Step 2: Age -->
-    <div class="step" data-step="2">
-      <div class="step-label">Step 2 of 12</div>
-      <div class="step-q">How old are you?</div>
-      <div class="step-hint">Adjusts plan intensity and recovery time (16–70).</div>
-      <input type="number" name="age" id="age" placeholder="e.g. 28" min="16" max="70" required>
-    </div>
+    <form id="ob-form" method="POST" action="/onboarding">
 
-    <!-- Step 3: Gender -->
-    <div class="step" data-step="3">
-      <div class="step-label">Step 3 of 12</div>
-      <div class="step-q">Select your gender</div>
-      <div class="step-hint">Influences calorie and macro targets.</div>
-      <div class="opt-grid cols3">
-        <button type="button" class="opt-btn" data-field="gender" data-val="male"><div class="opt-title">Male</div></button>
-        <button type="button" class="opt-btn" data-field="gender" data-val="female"><div class="opt-title">Female</div></button>
-        <button type="button" class="opt-btn" data-field="gender" data-val="prefer_not"><div class="opt-title">Prefer not to say</div></button>
-      </div>
-      <input type="hidden" name="gender" id="gender">
-    </div>
-
-    <!-- Step 4: Height -->
-    <div class="step" data-step="4">
-      <div class="step-label">Step 4 of 12</div>
-      <div class="step-q">What is your height?</div>
-      <div class="step-hint">Used for BMI and TDEE calculation.</div>
-      <div class="unit-row">
-        <input type="number" name="height" id="height" placeholder="e.g. 175" required>
-        <div class="unit-toggle">
-          <button type="button" class="unit-btn active" onclick="setUnit('height','cm',this)">cm</button>
-          <button type="button" class="unit-btn" onclick="setUnit('height','ft',this)">ft</button>
+        <!-- Step 1: Name -->
+        <div class="step active" data-step="1">
+            <div class="step-label">Step 1 of 12</div>
+            <div class="step-q">What should we call you?</div>
+            <div class="step-hint">Used for your personalised plan greeting.</div>
+            <input type="text" name="name" id="name" placeholder="Your name or nickname" required>
         </div>
-      </div>
-    </div>
 
-    <!-- Step 5: Current Weight -->
-    <div class="step" data-step="5">
-      <div class="step-label">Step 5 of 12</div>
-      <div class="step-q">What is your current weight?</div>
-      <div class="step-hint">Baseline for tracking your progress.</div>
-      <div class="unit-row">
-        <input type="number" name="weight" id="weight" placeholder="e.g. 80" required>
-        <div class="unit-toggle">
-          <button type="button" class="unit-btn active" onclick="setUnit('weight','kg',this)">kg</button>
-          <button type="button" class="unit-btn" onclick="setUnit('weight','lbs',this)">lbs</button>
+        <!-- Step 2: Age -->
+        <div class="step" data-step="2">
+            <div class="step-label">Step 2 of 12</div>
+            <div class="step-q">How old are you?</div>
+            <div class="step-hint">Adjusts plan intensity and recovery time (16–70).</div>
+            <input type="number" name="age" id="age" placeholder="e.g. 28" min="16" max="70" required>
         </div>
-      </div>
-    </div>
 
-    <!-- Step 6: Target Weight -->
-    <div class="step" data-step="6">
-      <div class="step-label">Step 6 of 12</div>
-      <div class="step-q">What is your target weight?</div>
-      <div class="step-hint">Determines the size of your goal gap.</div>
-      <div class="unit-row">
-        <input type="number" name="target_weight" id="target_weight" placeholder="e.g. 72">
-        <div class="unit-toggle">
-          <button type="button" class="unit-btn active" onclick="setUnit('target_weight','kg',this)">kg</button>
-          <button type="button" class="unit-btn" onclick="setUnit('target_weight','lbs',this)">lbs</button>
+        <!-- Step 3: Gender -->
+        <div class="step" data-step="3">
+            <div class="step-label">Step 3 of 12</div>
+            <div class="step-q">Select your gender</div>
+            <div class="step-hint">Influences calorie and macro targets.</div>
+            <div class="opt-grid cols3">
+                <button type="button" class="opt-btn" data-field="gender" data-val="male">
+                    <div class="opt-title">Male</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="gender" data-val="female">
+                    <div class="opt-title">Female</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="gender" data-val="prefer_not">
+                    <div class="opt-title">Prefer not to say</div>
+                </button>
+            </div>
+            <input type="hidden" name="gender" id="gender">
         </div>
-      </div>
-    </div>
 
-    <!-- Step 7: Body Type -->
-    <div class="step" data-step="7">
-      <div class="step-label">Step 7 of 12</div>
-      <div class="step-q">What is your body type?</div>
-      <div class="step-hint">Shapes your nutrition ratios.</div>
-      <div class="opt-grid cols3">
-        <button type="button" class="opt-btn" data-field="body_type" data-val="ectomorph"><div class="opt-title">Ectomorph</div><div class="opt-sub">Naturally slim</div></button>
-        <button type="button" class="opt-btn" data-field="body_type" data-val="mesomorph"><div class="opt-title">Mesomorph</div><div class="opt-sub">Athletic build</div></button>
-        <button type="button" class="opt-btn" data-field="body_type" data-val="endomorph"><div class="opt-title">Endomorph</div><div class="opt-sub">Naturally heavier</div></button>
-      </div>
-      <input type="hidden" name="body_type" id="body_type">
-    </div>
+        <!-- Step 4: Height -->
+        <div class="step" data-step="4">
+            <div class="step-label">Step 4 of 12</div>
+            <div class="step-q">What is your height?</div>
+            <div class="step-hint">Used for BMI and TDEE calculation.</div>
+            <div class="unit-row">
+                <input type="number" name="height" id="height" placeholder="e.g. 175" required>
+                <div class="unit-toggle">
+                    <button type="button" class="unit-btn active" onclick="setUnit('height','cm',this)">cm</button>
+                    <button type="button" class="unit-btn" onclick="setUnit('height','ft',this)">ft</button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Step 8: Experience -->
-    <div class="step" data-step="8">
-      <div class="step-label">Step 8 of 12</div>
-      <div class="step-q">What is your gym experience level?</div>
-      <div class="step-hint">Sets exercise difficulty and volume.</div>
-      <div class="opt-grid cols3">
-        <button type="button" class="opt-btn" data-field="experience" data-val="beginner"><div class="opt-title">Beginner</div><div class="opt-sub">0–1 years</div></button>
-        <button type="button" class="opt-btn" data-field="experience" data-val="intermediate"><div class="opt-title">Intermediate</div><div class="opt-sub">1–3 years</div></button>
-        <button type="button" class="opt-btn" data-field="experience" data-val="advanced"><div class="opt-title">Advanced</div><div class="opt-sub">3+ years</div></button>
-      </div>
-      <input type="hidden" name="experience" id="experience">
-    </div>
+        <!-- Step 5: Current Weight -->
+        <div class="step" data-step="5">
+            <div class="step-label">Step 5 of 12</div>
+            <div class="step-q">What is your current weight?</div>
+            <div class="step-hint">Baseline for tracking your progress.</div>
+            <div class="unit-row">
+                <input type="number" name="weight" id="weight" placeholder="e.g. 80" required>
+                <div class="unit-toggle">
+                    <button type="button" class="unit-btn active" onclick="setUnit('weight','kg',this)">kg</button>
+                    <button type="button" class="unit-btn" onclick="setUnit('weight','lbs',this)">lbs</button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Step 9: Goal -->
-    <div class="step" data-step="9">
-      <div class="step-label">Step 9 of 12</div>
-      <div class="step-q">What is your primary fitness goal?</div>
-      <div class="step-hint">Determines your entire programme.</div>
-      <div class="opt-grid cols2">
-        <button type="button" class="opt-btn" data-field="goal" data-val="weight_loss"><div class="opt-title">🔥 Weight Loss</div><div class="opt-sub">Reduce overall body fat</div></button>
-        <button type="button" class="opt-btn" data-field="goal" data-val="bulking"><div class="opt-title">💪 Bulking</div><div class="opt-sub">Build maximum muscle mass</div></button>
-        <button type="button" class="opt-btn" data-field="goal" data-val="cutting"><div class="opt-title">✂️ Cutting</div><div class="opt-sub">Lose fat while retaining muscle</div></button>
-        <button type="button" class="opt-btn" data-field="goal" data-val="shredding"><div class="opt-title">⚡ Shredding</div><div class="opt-sub">Competition-level leanness</div></button>
-      </div>
-      <input type="hidden" name="goal" id="goal">
-    </div>
+        <!-- Step 6: Target Weight -->
+        <div class="step" data-step="6">
+            <div class="step-label">Step 6 of 12</div>
+            <div class="step-q">What is your target weight?</div>
+            <div class="step-hint">Determines the size of your goal gap.</div>
+            <div class="unit-row">
+                <input type="number" name="target_weight" id="target_weight" placeholder="e.g. 72">
+                <div class="unit-toggle">
+                    <button type="button" class="unit-btn active" onclick="setUnit('target_weight','kg',this)">kg
+                    </button>
+                    <button type="button" class="unit-btn" onclick="setUnit('target_weight','lbs',this)">lbs</button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Step 10: Days -->
-    <div class="step" data-step="10">
-      <div class="step-label">Step 10 of 12</div>
-      <div class="step-q">How many days per week can you train?</div>
-      <div class="step-hint">Shapes your weekly training schedule.</div>
-      <div class="opt-grid cols5">
-        {% for d in [3,4,5,6,7] %}
-        <button type="button" class="opt-btn" data-field="days" data-val="{{d}}"><div class="opt-title days-title">{{d}}</div><div class="opt-sub">days</div></button>
-        {% endfor %}
-      </div>
-      <input type="hidden" name="days" id="days">
-    </div>
+        <!-- Step 7: Body Type -->
+        <div class="step" data-step="7">
+            <div class="step-label">Step 7 of 12</div>
+            <div class="step-q">What is your body type?</div>
+            <div class="step-hint">Shapes your nutrition ratios.</div>
+            <div class="opt-grid cols3">
+                <button type="button" class="opt-btn" data-field="body_type" data-val="ectomorph">
+                    <div class="opt-title">Ectomorph</div>
+                    <div class="opt-sub">Naturally slim</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="body_type" data-val="mesomorph">
+                    <div class="opt-title">Mesomorph</div>
+                    <div class="opt-sub">Athletic build</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="body_type" data-val="endomorph">
+                    <div class="opt-title">Endomorph</div>
+                    <div class="opt-sub">Naturally heavier</div>
+                </button>
+            </div>
+            <input type="hidden" name="body_type" id="body_type">
+        </div>
 
-    <!-- Step 11: Equipment -->
-    <div class="step" data-step="11">
-      <div class="step-label">Step 11 of 12</div>
-      <div class="step-q">What equipment do you have access to?</div>
-      <div class="step-hint">Filters exercise options accordingly.</div>
-      <div class="opt-grid cols3">
-        <button type="button" class="opt-btn" data-field="equipment" data-val="home"><div class="opt-title">Home Only</div><div class="opt-sub">Bodyweight & basic</div></button>
-        <button type="button" class="opt-btn" data-field="equipment" data-val="gym"><div class="opt-title">Full Gym</div><div class="opt-sub">All equipment</div></button>
-        <button type="button" class="opt-btn" data-field="equipment" data-val="both"><div class="opt-title">Both</div><div class="opt-sub">Home & gym</div></button>
-      </div>
-      <input type="hidden" name="equipment" id="equipment">
-    </div>
+        <!-- Step 8: Experience -->
+        <div class="step" data-step="8">
+            <div class="step-label">Step 8 of 12</div>
+            <div class="step-q">What is your gym experience level?</div>
+            <div class="step-hint">Sets exercise difficulty and volume.</div>
+            <div class="opt-grid cols3">
+                <button type="button" class="opt-btn" data-field="experience" data-val="beginner">
+                    <div class="opt-title">Beginner</div>
+                    <div class="opt-sub">0–1 years</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="experience" data-val="intermediate">
+                    <div class="opt-title">Intermediate</div>
+                    <div class="opt-sub">1–3 years</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="experience" data-val="advanced">
+                    <div class="opt-title">Advanced</div>
+                    <div class="opt-sub">3+ years</div>
+                </button>
+            </div>
+            <input type="hidden" name="experience" id="experience">
+        </div>
 
-    <!-- Step 12: Health -->
-    <div class="step" data-step="12">
-      <div class="step-label">Step 12 of 12</div>
-      <div class="step-q">Any health conditions to consider?</div>
-      <div class="step-hint">Used as a safety flag for exercise modifications.</div>
-      <div class="opt-grid cols3">
-        <button type="button" class="opt-btn" data-field="health" data-val="none"><div class="opt-title">None</div><div class="opt-sub">No issues</div></button>
-        <button type="button" class="opt-btn" data-field="health" data-val="injury"><div class="opt-title">Injury</div><div class="opt-sub">Current or past</div></button>
-        <button type="button" class="opt-btn" data-field="health" data-val="medical"><div class="opt-title">Medical</div><div class="opt-sub">Condition present</div></button>
-      </div>
-      <input type="hidden" name="health" id="health">
-    </div>
+        <!-- Step 9: Goal -->
+        <div class="step" data-step="9">
+            <div class="step-label">Step 9 of 12</div>
+            <div class="step-q">What is your primary fitness goal?</div>
+            <div class="step-hint">Determines your entire programme.</div>
+            <div class="opt-grid cols2">
+                <button type="button" class="opt-btn" data-field="goal" data-val="weight_loss">
+                    <div class="opt-title">🔥 Weight Loss</div>
+                    <div class="opt-sub">Reduce overall body fat</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="goal" data-val="bulking">
+                    <div class="opt-title">💪 Bulking</div>
+                    <div class="opt-sub">Build maximum muscle mass</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="goal" data-val="cutting">
+                    <div class="opt-title">✂️ Cutting</div>
+                    <div class="opt-sub">Lose fat while retaining muscle</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="goal" data-val="shredding">
+                    <div class="opt-title">⚡ Shredding</div>
+                    <div class="opt-sub">Competition-level leanness</div>
+                </button>
+            </div>
+            <input type="hidden" name="goal" id="goal">
+        </div>
 
-    <!-- Summary -->
-    <div class="step" data-step="13">
-      <div class="step-label">Ready to go!</div>
-      <div class="step-q">Your plan is ready to generate</div>
-      <div class="step-hint">Review your details below.</div>
-      <div class="summary-grid" id="summary-grid"></div>
-      <button type="submit" class="btn btn-red submit-btn">Generate My Plan →</button>
-    </div>
+        <!-- Step 10: Days -->
+        <div class="step" data-step="10">
+            <div class="step-label">Step 10 of 12</div>
+            <div class="step-q">How many days per week can you train?</div>
+            <div class="step-hint">Shapes your weekly training schedule.</div>
+            <div class="opt-grid cols5">
+                {% for d in [3,4,5,6,7] %}
+                <button type="button" class="opt-btn" data-field="days" data-val="{{d}}">
+                    <div class="opt-title days-title">{{d}}</div>
+                    <div class="opt-sub">days</div>
+                </button>
+                {% endfor %}
+            </div>
+            <input type="hidden" name="days" id="days">
+        </div>
 
-    <div class="nav-btns" id="nav-btns">
-      <button type="button" class="btn btn-outline btn-back" id="back-btn" onclick="prevStep()">← Back</button>
-      <button type="button" class="btn btn-red" id="next-btn" onclick="nextStep()">Continue →</button>
-    </div>
-  </form>
+        <!-- Step 11: Equipment -->
+        <div class="step" data-step="11">
+            <div class="step-label">Step 11 of 12</div>
+            <div class="step-q">What equipment do you have access to?</div>
+            <div class="step-hint">Filters exercise options accordingly.</div>
+            <div class="opt-grid cols3">
+                <button type="button" class="opt-btn" data-field="equipment" data-val="home">
+                    <div class="opt-title">Home Only</div>
+                    <div class="opt-sub">Bodyweight & basic</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="equipment" data-val="gym">
+                    <div class="opt-title">Full Gym</div>
+                    <div class="opt-sub">All equipment</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="equipment" data-val="both">
+                    <div class="opt-title">Both</div>
+                    <div class="opt-sub">Home & gym</div>
+                </button>
+            </div>
+            <input type="hidden" name="equipment" id="equipment">
+        </div>
+
+        <!-- Step 12: Health -->
+        <div class="step" data-step="12">
+            <div class="step-label">Step 12 of 12</div>
+            <div class="step-q">Any health conditions to consider?</div>
+            <div class="step-hint">Used as a safety flag for exercise modifications.</div>
+            <div class="opt-grid cols3">
+                <button type="button" class="opt-btn" data-field="health" data-val="none">
+                    <div class="opt-title">None</div>
+                    <div class="opt-sub">No issues</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="health" data-val="injury">
+                    <div class="opt-title">Injury</div>
+                    <div class="opt-sub">Current or past</div>
+                </button>
+                <button type="button" class="opt-btn" data-field="health" data-val="medical">
+                    <div class="opt-title">Medical</div>
+                    <div class="opt-sub">Condition present</div>
+                </button>
+            </div>
+            <input type="hidden" name="health" id="health">
+        </div>
+
+        <!-- Summary -->
+        <div class="step" data-step="13">
+            <div class="step-label">Ready to go!</div>
+            <div class="step-q">Your plan is ready to generate</div>
+            <div class="step-hint">Review your details below.</div>
+            <div class="summary-grid" id="summary-grid"></div>
+            <button type="submit" class="btn btn-red submit-btn">Generate My Plan →</button>
+        </div>
+
+        <div class="nav-btns" id="nav-btns">
+            <button type="button" class="btn btn-outline btn-back" id="back-btn" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn btn-red" id="next-btn" >Continue →</button>
+        </div>
+    </form>
 </div>
 <script type="module" src="{{ url_for('static', filename='scripts/onboarding.js') }}"></script>
 </body>
